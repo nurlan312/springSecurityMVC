@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students page</title>
+</head>
+<body background="https://www.fix.ru/files/content/image/7_1.jpg">
+<h1 style="background-color: cornflowerblue; text-align: center"><em>Students page</em></h1>
+<hr>
+<div align="center">
+
+<div sec:authorize="isAuthenticated()">
+    Welcome, <b><span sec:authentication="name">Username - </span></b>
+    <i><span sec:authentication="principal.authorities"> Roles</span></i>
+</div>
+    <div align="right">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+<hr>
+<table border="red" style="text-align: center; width: 80%;
+       background-color: orange; border: 5px solid indigo">
+    <tr>
+        <th>Student id</th>
+        <th>Student first name</th>
+        <th>Student last name</th>
+        <th>Student email</th>
+        <th>Study format</th>
+        <th>Group</th>
+        <th>Action</th>
+    </tr>
+    <tbody th:each="student : ${students}">
+    <tr>
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.studyFormat}"></td>
+        <td th:text="${student.group.groupName}"></td>
+        <td><a sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')"
+                th:href="@{/student/students/update-student/{id}(id=${student.id})}">
+            <input type="submit" value="Update"></a>
+            <a sec:authorize="hasAnyAuthority('ADMIN')"
+                    th:href="@{/student/students/delete-student/{id}(id=${student.id})}">
+                <input type="submit" value="Delete"></a>
+        </td>
+<!--        <td><a th:href="@{/group/groups}"><button>Group</button></a></td>-->
+    </tr>
+    </tbody>
+</table>
+</div>
+<br>
+<hr>
+<a sec:authorize="hasAnyAuthority('ADMIN', 'CREATOR')" href="/student/students/add-student">
+    <input type="submit" value="Create new student"></a>
+<hr>
+<style>
+    .bg-img {
+        /* The image used */
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/1280px-24701-nature-natural-beauty.jpg");
+
+        min-height: 380px;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        /* Needed to position the navbar */
+        position: relative;
+    }
+
+    /* Position the navbar container inside the image */
+    .container {
+        position: absolute;
+        margin: 20px;
+        width: auto;
+    }
+
+    /* The navbar */
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    /* Navbar links */
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+</style>
+<div class="bg-img">
+    <div class="container">
+        <div class="topnav">
+            <a href="/company/companies">Company page</a>
+            <a href="/course/courses">Course page</a>
+            <a href="/teacher/teachers">Teacher page</a>
+            <a href="/group/groups">Group page</a>
+            <a href="/">Back main page</a>
+        </div>
+    </div>
+</div>
+
+
+<!--<style>-->
+<!--    #mySidenav a {-->
+<!--        position: absolute; /* Position them relative to the browser window */-->
+<!--        left: -80px; /* Position them outside of the screen */-->
+<!--        transition: 0.3s; /* Add transition on hover */-->
+<!--        padding: 15px; /* 15px padding */-->
+<!--        width: 100px; /* Set a specific width */-->
+<!--        text-decoration: none; /* Remove underline */-->
+<!--        font-size: 20px; /* Increase font size */-->
+<!--        color: white; /* White text color */-->
+<!--        border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */-->
+<!--    }-->
+
+<!--    #mySidenav a:hover {-->
+<!--        left: 0;-->
+<!--    }-->
+
+<!--    #about {-->
+<!--        top: 20px;-->
+<!--        background-color: #04AA6D;-->
+<!--    }-->
+
+<!--    #blog {-->
+<!--        top: 80px;-->
+<!--        background-color: #2196F3;-->
+<!--    }-->
+
+<!--    #project {-->
+<!--        top: 140px;-->
+<!--        background-color: #36bef4;-->
+<!--    }-->
+
+<!--    #contact {-->
+<!--        top: 200px;-->
+<!--        background-color: #555-->
+<!--    }-->
+<!--</style>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--<div id="mySidenav" class="sidenav">-->
+<!--    <a href="/company/companies" id="about">Company</a>-->
+<!--    <a href="/course/courses" id="blog">Course</a>-->
+<!--    <a href="/teacher/teachers" id="project">Teacher</a>-->
+<!--    <a href="/group/groups" id="contact">Group</a>-->
+<!--</div>-->
+<!--<a th:href="@{/teacher/teachers}"><button>Back teacher page</button> </a>-->
+<!--<br>-->
+<!--<a th:href="@{/company/companies}"><button>Back company page</button> </a>-->
+<!--<br>-->
+<!--<a th:href="@{/group/groups}"><button>Back group page</button></a>-->
+<!--<br>-->
+<!--<a th:href="@{/course/courses}"><button>Back course page</button></a>-->
+</body>
+</html>
