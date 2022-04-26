@@ -20,8 +20,8 @@ public class Company {
     private String companyName;
     private String locatedCountry;
 
-//    @OneToMany(mappedBy = "company")
-//    private List<Course> courses;
+    @OneToMany(mappedBy = "company")
+    private List<Course> courses;
 
     @Override
     public String toString() {
