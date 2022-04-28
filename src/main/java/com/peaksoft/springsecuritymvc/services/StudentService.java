@@ -46,4 +46,13 @@ public class StudentService {
         student1.setGroup(groupRepository.getById(student.getGroup().getId()));
         return student;
     }
+
+    public List<Student> search(String name) {
+        String text = name == null ? "" : name;
+        return repository.searchStudentByFirstName(text.toUpperCase());
+    }
+
+    public List<Student> getSearch(String name) {
+        return search(name);
+    }
 }

@@ -1,10 +1,10 @@
 package com.peaksoft.springsecuritymvc.models;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-
-import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table
@@ -20,11 +20,13 @@ public class Course {
     private String courseName;
     private int duration;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToOne(mappedBy = "course", cascade = {DETACH, REFRESH, PERSIST, MERGE})
+    @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Teacher teacher;
 
     @Override

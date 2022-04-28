@@ -84,7 +84,8 @@
 </div>
 <br>
 <hr>
-<a sec:authorize="hasAnyAuthority('ADMIN', 'CREATOR')" th:href="@{/company/companies/add-company}">
+<a sec:authorize="hasAnyAuthority('ADMIN', 'CREATOR')"
+   th:href="@{/company/companies/add-company}">
     <input type="submit" value="Create new company"></a>
 <hr>
 <div class="navbar" id="myNavbar">

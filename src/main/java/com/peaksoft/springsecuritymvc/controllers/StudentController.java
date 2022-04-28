@@ -49,4 +49,10 @@ public class StudentController {
         studentService.deleteByIdStudent(id);
         return "redirect:/student/students";
     }
+
+    @GetMapping("/search")
+    public String searchByName(@RequestParam(name = "name", required = false) String name) {
+        studentService.search(name);
+        return "redirect:/student/students";
+    }
 }

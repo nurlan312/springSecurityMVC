@@ -3,10 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <title>Main page</title>
 </head>
-<div>
-    <label for="search">Search students</label>
-    <input type="search" id="search" data-search>
-</div>
+    <form>
+        <div>
+            <a th:href="@{/student/students/search}"></a>
+            <label for="search">Search students:</label>
+            <input type="search" id="search" name="g" placeholder="Enter students name">
+            <button>Search</button>
+        </div>
+    </form>
 <style>
     .navbar {
         overflow: hidden;

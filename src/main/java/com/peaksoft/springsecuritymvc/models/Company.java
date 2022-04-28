@@ -2,6 +2,8 @@ package com.peaksoft.springsecuritymvc.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,10 +23,11 @@ public class Company {
     private String locatedCountry;
 
     @OneToMany(mappedBy = "company")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Course> courses;
 
-    @Override
-    public String toString() {
-        return  companyName;
-    }
+//    @Override
+//    public String toString() {
+//        return  companyName;
+//    }
 }

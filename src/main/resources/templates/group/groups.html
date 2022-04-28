@@ -6,10 +6,12 @@
     <meta charset="UTF-8">
     <title>Groups page</title>
 </head>
-<div>
-    <label for="search">Search students</label>
-    <input type="search" id="search" data-search>
-    <a href="/student/students"></a>
+<div style="background-color: sandybrown; text-align: right">
+<a th:href="@{/student/students/search}"></a>
+<label for="site-search">Search students:</label>
+<input type="search" id="site-search" name="q">
+<hr>
+<button>Search</button>
 </div>
 <body background="https://www.fix.ru/files/content/image/7_1.jpg">
 <h1 style="background-color: sienna; text-align: center"><em>Group page</em></h1>

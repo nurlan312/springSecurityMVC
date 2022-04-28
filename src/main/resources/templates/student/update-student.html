@@ -8,7 +8,7 @@
 <h1 style="text-align: center; background-color: darkgoldenrod"><em>Create student page</em></h1>
 <hr>
 <div style="text-align: center; background: chocolate">
-    <form th:action="@{/student/students/save-student/{id}(id=${student.id})}"
+    <form th:action="@{/student/students/edit-student/{id}(id=${student.id})}"
           th:method="post" th:object="${student}">
 
         <label for="Name">Student first name</label>
@@ -21,7 +21,7 @@
         <input type="text" th:field="*{email}" id="Email" placeholder="Enter student email">
         <br>
         <label for="Format">Study format</label>
-        <input type="text" th:filed="*{studyFormat}" id="Format" placeholder="Enter study format">
+        <input type="text" th:field="*{studyFormat}" id="Format" placeholder="Enter study format">
         <br>
         <label for="Group">Group</label>
         <input type="text" th:field="*{group.id}" id="Group" placeholder="Enter group id">

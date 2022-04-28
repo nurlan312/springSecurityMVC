@@ -2,6 +2,8 @@ package com.peaksoft.springsecuritymvc.models;
 
 import com.peaksoft.springsecuritymvc.enams.StudyFormat;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -26,6 +28,7 @@ public class Student {
     private StudyFormat studyFormat;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "group_id")
     private Group group;
 }
