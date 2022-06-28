@@ -1,10 +1,10 @@
 name: Java CI with Maven
 
- on:
+on:
    push:
-     branches: [ "main" ]
+     branches: master
 
- jobs:
+jobs:
    build:
 
      runs-on: ubuntu-latest
