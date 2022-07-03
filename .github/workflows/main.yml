@@ -29,4 +29,4 @@ jobs:
          environment_name: Springsecuritymvs-env
          version_label: ${{github.SHA}}
          region: eu-central-1
-         deployment_package: target/peaksoftlms
+         deployment_package: target/springSecurityMVC
